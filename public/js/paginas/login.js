@@ -4,7 +4,7 @@ const mensagem = document.getElementById("mensagem");
 // se já estiver logado vai direto para a página certa
 function irParaPaginaInicial(perfil) {
   if (perfil === "cliente") {
-    window.location.href = "pedidos.html";
+    window.location.href = "meus-pedidos.html";
   } else {
     window.location.href = "avaliacao.html";
   }

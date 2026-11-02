@@ -5,9 +5,11 @@ async function listarPedidos() {
   return await resposta.json();
 }
 
+// O filtro é feito aqui e não com ?clienteId= porque o JSON Server
+// transforma "1" em número na busca, e no db.json os ids são texto.
 async function listarPedidosDoCliente(clienteId) {
-  const resposta = await fetch(`${API_URL}/pedidos?clienteId=${clienteId}`);
-  return await resposta.json();
+  const pedidos = await listarPedidos();
+  return pedidos.filter((pedido) => pedido.clienteId === clienteId);
 }
 
 async function criarPedido(pedido) {
