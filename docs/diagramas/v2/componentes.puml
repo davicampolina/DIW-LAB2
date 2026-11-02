@@ -8,9 +8,9 @@ package "Navegador do Cliente / Agente" {
     [Login\n(index.html + login.js)] as Login
     [Cadastro\n(cadastro.html + cadastro.js)] as Cadastro
     [Meus Dados\n(perfil.html + perfil.js)] as Perfil
-    [Pedidos do Cliente\n(pedidos.html + pedidos.js)] as PagPedidos
+    [Pedidos do Cliente\n(meus-pedidos.html + meus-pedidos.js)] as PagPedidos
     [Avaliação de Pedidos\n(avaliacao.html + avaliacao.js)] as Avaliacao
-    [CRUD de Clientes\n(clientes.html + clientes.js)] as PagClientes
+    [CRUD de Clientes\n(gestao-clientes.html + gestao-clientes.js)] as PagClientes
   }
 
   [Sessão\n(sessao.js)] as Sessao

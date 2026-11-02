@@ -7,18 +7,18 @@ package "Construção Dinâmica das Páginas" {
   package "Visão (public/*.html + css)" as Visao {
     class "index.html" << página >>
     class "cadastro.html" << página >>
-    class "pedidos.html" << página >>
+    class "meus-pedidos.html" << página >>
     class "perfil.html" << página >>
     class "avaliacao.html" << página >>
-    class "clientes.html" << página >>
+    class "gestao-clientes.html" << página >>
   }
   package "Controle (js/paginas)" as Controle {
     class "login.js" << script >>
     class "cadastro.js" << script >>
-    class "pedidos.js" << script >>
+    class "meus-pedidos.js" << script >>
     class "perfil.js" << script >>
     class "avaliacao.js" << script >>
-    class "clientes.js" << script >>
+    class "gestao-clientes.js" << script >>
   }
   package "Apoio (js)" as Apoio {
     class "config.js" << script >>
