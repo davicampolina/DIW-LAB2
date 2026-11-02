@@ -30,8 +30,9 @@
       <div class="col-lg-4">
         <div class="card">
           <div class="card-body">
-            <h2 class="h5 card-title">Novo pedido de aluguel</h2>
+            <h2 class="h5 card-title" id="titulo-form">Novo pedido de aluguel</h2>
             <form id="form-pedido">
+              <input type="hidden" id="pedido-id">
               <div class="mb-3">
                 <label for="automovel" class="form-label">Automóvel</label>
                 <select class="form-select" id="automovel" required></select>
@@ -47,7 +48,8 @@
 
               <div id="mensagem" class="alert d-none"></div>
 
-              <button type="submit" class="btn btn-primary w-100">Enviar pedido</button>
+              <button type="submit" class="btn btn-primary w-100" id="btn-enviar">Enviar pedido</button>
+              <button type="button" class="btn btn-outline-secondary w-100 mt-2 d-none" id="btn-cancelar-edicao">Cancelar edição</button>
             </form>
           </div>
         </div>
@@ -65,6 +67,7 @@
                     <th>Automóvel</th>
                     <th>Período</th>
                     <th>Status</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody id="tabela-pedidos"></tbody>
