@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect x="0" y="0" width="200" height="200" rx="36" fill="#212529"/>
+  <!-- carro -->
+  <path d="M38 118 L48 88 Q52 78 64 78 L136 78 Q148 78 152 88 L162 118 Q170 120 170 130 L170 142 L30 142 L30 130 Q30 120 38 118 Z" fill="#0d6efd"/>
+  <path d="M58 116 L65 94 Q67 89 73 89 L127 89 Q133 89 135 94 L142 116 Z" fill="#cfe2ff"/>
+  <line x1="100" y1="89" x2="100" y2="116" stroke="#0d6efd" stroke-width="4"/>
+  <circle cx="62" cy="144" r="15" fill="#212529"/>
+  <circle cx="62" cy="144" r="9" fill="#adb5bd"/>
+  <circle cx="138" cy="144" r="15" fill="#212529"/>
+  <circle cx="138" cy="144" r="9" fill="#adb5bd"/>
+  <text x="100" y="54" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#ffffff">AlugaCarros</text>
+</svg>
