@@ -1,0 +1,60 @@
+@startuml componentes
+title Sistema de Aluguel de Carros - Diagrama de Componentes (v2)
+top to bottom direction
+
+package "Navegador do Cliente / Agente" {
+
+  package "Construção Dinâmica das Páginas" {
+    [Login\n(index.html + login.js)] as Login
+    [Cadastro\n(cadastro.html + cadastro.js)] as Cadastro
+    [Meus Dados\n(perfil.html + perfil.js)] as Perfil
+    [Pedidos do Cliente\n(pedidos.html + pedidos.js)] as PagPedidos
+    [Avaliação de Pedidos\n(avaliacao.html + avaliacao.js)] as Avaliacao
+    [CRUD de Clientes\n(clientes.html + clientes.js)] as PagClientes
+  }
+
+  [Sessão\n(sessao.js)] as Sessao
+  database "localStorage" as LS
+
+  package "Gestão de Pedidos e Contratos" {
+    [loginServico.js] as SLogin
+    [clientesServico.js] as SClientes
+    [pedidosServico.js] as SPedidos
+    [automoveisServico.js] as SAutomoveis
+    [agentesServico.js] as SAgentes
+    [contratosServico.js] as SContratos
+  }
+}
+
+interface "API REST (HTTP + JSON)\n/clientes /agentes /automoveis\n/pedidos /contratos" as Rest
+
+node "Servidor Central" {
+  [JSON Server] as Api
+  database "db.json" as Db
+}
+
+Login ..> SLogin
+Login ..> Sessao
+Sessao ..> LS
+Cadastro ..> SClientes
+Perfil ..> SClientes
+PagClientes ..> SClientes
+PagPedidos ..> SPedidos
+PagPedidos ..> SAutomoveis
+Avaliacao ..> SPedidos
+Avaliacao ..> SClientes
+Avaliacao ..> SAutomoveis
+Avaliacao ..> SAgentes
+Avaliacao ..> SContratos
+
+SLogin ..> Rest
+SClientes ..> Rest
+SPedidos ..> Rest
+SAutomoveis ..> Rest
+SAgentes ..> Rest
+SContratos ..> Rest
+
+Rest -- Api
+note right of Rest : chamadas feitas com Fetch API
+Api --> Db : lê / grava
+@enduml
