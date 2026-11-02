@@ -1,0 +1,117 @@
+@startuml classes
+title Sistema de Aluguel de Carros - Diagrama de Classes (v2)
+skinparam classAttributeIconSize 0
+
+abstract class Usuario {
+  - id : String
+  - nome : String
+  - email : String
+  - senha : String
+  + fazerLogin(email, senha, perfil) : Usuario
+}
+
+class Cliente {
+  - rg : String
+  - cpf : String
+  - endereco : String
+  - profissao : String
+  - rendimentos : Rendimento[0..3]
+  + criarPedido(pedido : Pedido)
+  + atualizarPedido(id, dados)
+  + listarPedidosDoCliente(clienteId) : Pedido[]
+  + cancelarPedido(pedido : Pedido)
+}
+
+class Rendimento {
+  - entidadeEmpregadora : String
+  - valor : double
+}
+
+class Agente {
+  - cnpj : String
+  - tipo : TipoAgente
+  + atualizarPedido(id, dados)
+  + salvarPedido(novoStatus : StatusPedido)
+  + criarContrato(contrato : Contrato)
+}
+
+enum TipoAgente {
+  Empresa
+  Banco
+}
+
+class Automovel {
+  - id : String
+  - matricula : String
+  - ano : int
+  - marca : String
+  - modelo : String
+  - placa : String
+  - proprietarioTipo : TipoProprietario
+  - proprietarioId : String
+}
+
+class Pedido {
+  - id : String
+  - clienteId : String
+  - automovelId : String
+  - agenteId : String
+  - dataPedido : Date
+  - dataInicio : Date
+  - dataFim : Date
+  - status : StatusPedido
+  - parecer : String
+}
+
+enum StatusPedido {
+  Em análise
+  Aprovado
+  Reprovado
+  Cancelado
+  Contratado
+}
+
+class Contrato {
+  - id : String
+  - pedidoId : String
+  - clienteId : String
+  - automovelId : String
+  - agenteId : String
+  - dataAssinatura : Date
+  - tipoPropriedade : TipoProprietario
+  - proprietarioId : String
+}
+
+class ContratoCredito {
+  - bancoId : String
+  - valor : double
+}
+
+enum TipoProprietario {
+  Cliente
+  Empresa
+  Banco
+}
+
+Usuario <|-- Cliente
+Usuario <|-- Agente
+Agente ..> TipoAgente
+
+Cliente "1" *-- "0..3" Rendimento : rendimentos
+Cliente "1" -- "0..*" Pedido : faz
+Pedido "0..*" --> "1" Automovel : refere-se a
+Pedido ..> StatusPedido
+Agente "0..1" -- "0..*" Pedido : avalia
+Pedido "1" -- "0..1" Contrato : gera
+Agente "1" -- "0..*" Contrato : executa
+Contrato "1" *-- "0..1" ContratoCredito : credito
+Agente "1" -- "0..*" ContratoCredito : concede
+Contrato ..> TipoProprietario
+Automovel ..> TipoProprietario
+
+note right of ContratoCredito
+  Só um agente com
+  tipo = Banco pode
+  conceder crédito.
+end note
+@enduml
