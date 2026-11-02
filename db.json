@@ -10,8 +10,14 @@
       "email": "mariana@email.com",
       "senha": "123",
       "rendimentos": [
-        { "entidadeEmpregadora": "Tech Minas Ltda", "valor": 6500 },
-        { "entidadeEmpregadora": "Freelancer", "valor": 1200 }
+        {
+          "entidadeEmpregadora": "Tech Minas Ltda",
+          "valor": 6500
+        },
+        {
+          "entidadeEmpregadora": "Freelancer",
+          "valor": 1200
+        }
       ]
     },
     {
@@ -24,8 +30,95 @@
       "email": "carlos@email.com",
       "senha": "123",
       "rendimentos": [
-        { "entidadeEmpregadora": "Escola Estadual Afonso Pena", "valor": 4200 }
+        {
+          "entidadeEmpregadora": "Escola Estadual Afonso Pena",
+          "valor": 4200
+        }
       ]
     }
-  ]
+  ],
+  "agentes": [
+    {
+      "id": "1",
+      "nome": "Rota Locadora de Veículos",
+      "tipo": "Empresa",
+      "cnpj": "12.345.678/0001-90",
+      "email": "empresa@rota.com",
+      "senha": "123"
+    },
+    {
+      "id": "2",
+      "nome": "Banco Horizonte",
+      "tipo": "Banco",
+      "cnpj": "98.765.432/0001-10",
+      "email": "banco@horizonte.com",
+      "senha": "123"
+    }
+  ],
+  "automoveis": [
+    {
+      "id": "1",
+      "matricula": "00912345678",
+      "ano": 2022,
+      "marca": "Fiat",
+      "modelo": "Argo",
+      "placa": "QWE-1A23",
+      "proprietarioTipo": "Empresa",
+      "proprietarioId": "1"
+    },
+    {
+      "id": "2",
+      "matricula": "00923456789",
+      "ano": 2023,
+      "marca": "Volkswagen",
+      "modelo": "Polo",
+      "placa": "RTY-2B34",
+      "proprietarioTipo": "Empresa",
+      "proprietarioId": "1"
+    },
+    {
+      "id": "3",
+      "matricula": "00934567890",
+      "ano": 2021,
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "placa": "UIO-3C45",
+      "proprietarioTipo": "Empresa",
+      "proprietarioId": "1"
+    },
+    {
+      "id": "4",
+      "matricula": "00945678901",
+      "ano": 2024,
+      "marca": "Hyundai",
+      "modelo": "HB20",
+      "placa": "PAS-4D56",
+      "proprietarioTipo": "Banco",
+      "proprietarioId": "2"
+    },
+    {
+      "id": "5",
+      "matricula": "00956789012",
+      "ano": 2023,
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "placa": "DFG-5E67",
+      "proprietarioTipo": "Banco",
+      "proprietarioId": "2"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "1",
+      "clienteId": "1",
+      "automovelId": "2",
+      "dataInicio": "2026-11-10",
+      "dataFim": "2026-11-15",
+      "dataPedido": "2026-11-02",
+      "status": "Em análise",
+      "parecer": "",
+      "agenteId": ""
+    }
+  ],
+  "contratos": []
 }
