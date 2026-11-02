@@ -1,0 +1,32 @@
+@startuml componentes
+title Sistema de Aluguel de Carros - Diagrama de Componentes (v1)
+
+node "Computador do Cliente / Agente (Navegador)" {
+  package "Construção Dinâmica das Páginas" {
+    [Páginas HTML\n(Bootstrap 5)] as Paginas
+    [Scripts das páginas\n(JavaScript)] as Scripts
+  }
+  package "Gestão de Pedidos e Contratos" {
+    [Serviço de Clientes] as SClientes
+    [Serviço de Pedidos] as SPedidos
+    [Serviço de Contratos] as SContratos
+  }
+}
+
+node "Servidor Central" {
+  [JSON Server] as Api
+  database "db.json" as Db
+}
+
+interface "API REST\n(HTTP + JSON)" as Rest
+
+Paginas ..> Scripts
+Scripts ..> SClientes
+Scripts ..> SPedidos
+Scripts ..> SContratos
+SClientes ..> Rest : Fetch API
+SPedidos ..> Rest : Fetch API
+SContratos ..> Rest : Fetch API
+Rest - Api
+Api --> Db : lê / grava
+@enduml
