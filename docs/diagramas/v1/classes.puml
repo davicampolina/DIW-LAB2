@@ -1,0 +1,78 @@
+@startuml classes
+title Sistema de Aluguel de Carros - Diagrama de Classes (v1)
+skinparam classAttributeIconSize 0
+
+abstract class Usuario {
+  - id : String
+  - nome : String
+  - email : String
+  - senha : String
+  + login(email, senha) : boolean
+}
+
+class Cliente {
+  - rg : String
+  - cpf : String
+  - endereco : String
+  - profissao : String
+  + introduzirPedido() : Pedido
+  + modificarPedido(pedido : Pedido)
+  + consultarPedidos() : Pedido[]
+  + cancelarPedido(pedido : Pedido)
+}
+
+class Rendimento {
+  - entidadeEmpregadora : String
+  - valor : double
+}
+
+abstract class Agente {
+  - cnpj : String
+  + modificarPedido(pedido : Pedido)
+  + avaliarPedido(pedido : Pedido, aprovado : boolean)
+  + executarContrato(pedido : Pedido) : Contrato
+}
+
+class Empresa
+class Banco {
+  + concederCredito(contrato : Contrato, valor : double) : ContratoCredito
+}
+
+class Automovel {
+  - matricula : String
+  - ano : int
+  - marca : String
+  - modelo : String
+  - placa : String
+}
+
+class Pedido {
+  - id : String
+  - dataInicio : Date
+  - dataFim : Date
+  - status : String
+}
+
+class Contrato {
+  - id : String
+  - dataAssinatura : Date
+  - tipoPropriedade : String
+}
+
+class ContratoCredito {
+  - valor : double
+}
+
+Usuario <|-- Cliente
+Usuario <|-- Agente
+Agente <|-- Empresa
+Agente <|-- Banco
+
+Cliente "1" *-- "0..3" Rendimento : possui
+Cliente "1" -- "0..*" Pedido : faz
+Pedido "0..*" --> "1" Automovel : refere-se a
+Agente "1" -- "0..*" Pedido : avalia
+Pedido "1" -- "0..1" Contrato : gera
+Contrato "1" -- "0..1" ContratoCredito : associado a
+Banco "1" -- "0..*" ContratoCredito : concede
+@enduml
