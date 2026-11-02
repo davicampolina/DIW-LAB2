@@ -1,0 +1,34 @@
+@startuml pacotes
+title Sistema de Aluguel de Carros - Diagrama de Pacotes / Visão Lógica (v1)
+skinparam packageStyle folder
+set separator none
+
+package "Construção Dinâmica das Páginas" {
+  package "Visão (HTML + Bootstrap)" as Visao {
+  }
+  package "Controle (JavaScript)" as Controle {
+  }
+}
+
+package "Gestão de Pedidos e Contratos" {
+  package "Modelo" as Modelo {
+    class Cliente
+    class Agente
+    class Automovel
+    class Pedido
+    class Contrato
+  }
+  package "Serviços (Fetch API)" as Servicos {
+  }
+}
+
+package "Persistência (JSON Server)" as Persistencia {
+  class "db.json" << arquivo >>
+}
+
+Visao ..> Controle
+Controle ..> Servicos
+Controle ..> Modelo
+Servicos ..> Modelo
+Servicos ..> Persistencia : HTTP / REST
+@enduml
