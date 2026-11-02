@@ -1,3 +1,6 @@
+// só os agentes acessam a lista completa de clientes
+const sessao = exigirLogin("agente");
+
 const form = document.getElementById("form-cliente");
 const inputId = document.getElementById("cliente-id");
 const tabela = document.getElementById("tabela-clientes");
@@ -165,4 +168,6 @@ btnCancelar.addEventListener("click", () => {
   esconderMensagem();
 });
 
-carregarClientes();
+if (sessao) {
+  carregarClientes();
+}
