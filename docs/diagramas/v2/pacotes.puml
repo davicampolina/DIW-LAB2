@@ -1,0 +1,57 @@
+@startuml pacotes
+title Sistema de Aluguel de Carros - Diagrama de Pacotes / Visão Lógica (v2)
+skinparam packageStyle folder
+set separator none
+
+package "Construção Dinâmica das Páginas" {
+  package "Visão (public/*.html + css)" as Visao {
+    class "index.html" << página >>
+    class "cadastro.html" << página >>
+    class "pedidos.html" << página >>
+    class "perfil.html" << página >>
+    class "avaliacao.html" << página >>
+    class "clientes.html" << página >>
+  }
+  package "Controle (js/paginas)" as Controle {
+    class "login.js" << script >>
+    class "cadastro.js" << script >>
+    class "pedidos.js" << script >>
+    class "perfil.js" << script >>
+    class "avaliacao.js" << script >>
+    class "clientes.js" << script >>
+  }
+  package "Apoio (js)" as Apoio {
+    class "config.js" << script >>
+    class "sessao.js" << script >>
+    class "utils.js" << script >>
+  }
+}
+
+package "Gestão de Pedidos e Contratos" {
+  package "Serviços (js/servicos)" as Servicos {
+    class "loginServico.js" << script >>
+    class "clientesServico.js" << script >>
+    class "agentesServico.js" << script >>
+    class "automoveisServico.js" << script >>
+    class "pedidosServico.js" << script >>
+    class "contratosServico.js" << script >>
+  }
+  package "Modelo" as Modelo {
+    class Cliente
+    class Agente
+    class Automovel
+    class Pedido
+    class Contrato
+  }
+}
+
+package "Persistência (JSON Server)" as Persistencia {
+  class "db.json" << arquivo >>
+}
+
+Visao ..> Controle
+Controle ..> Apoio
+Controle ..> Servicos
+Servicos ..> Modelo
+Servicos ..> Persistencia : HTTP / REST (Fetch API)
+@enduml
