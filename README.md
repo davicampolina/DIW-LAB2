@@ -1,5 +1,3 @@
----
-
 # 🚗 AlugaCarros - Sistema de Aluguel de Carros 👨‍💻
 
 > [!NOTE]
@@ -210,6 +208,9 @@ npx json-server db.json
 
 O JSON Server serve automaticamente a pasta `public/`, então a página e a API ficam no mesmo endereço. Para parar o servidor use `Ctrl + C`.
 
+> [!IMPORTANT]
+> Nenhuma página HTML pode ter o mesmo nome de uma rota da API (por exemplo `clientes.html` ou `pedidos.html`). O JSON Server entrega os arquivos da pasta `public/` antes da API e completa o `.html` sozinho, então `GET /clientes` devolveria a página no lugar do JSON. Por isso as páginas se chamam `gestao-clientes.html` e `meus-pedidos.html`.
+
 > [!NOTE]
 > Os scripts usam a API em `http://localhost:3000` (constante `API_URL` em `public/js/config.js`). Se rodar o JSON Server em outra porta, altere essa constante também.
 
@@ -244,10 +245,10 @@ O JSON Server serve automaticamente a pasta `public/`, então a página e a API 
 └── /public                       # 🌐 Front-end servido pelo JSON Server
     ├── index.html                # 🔐 Login
     ├── cadastro.html             # 🙋 Cadastro de cliente
-    ├── pedidos.html              # 📝 Pedidos do cliente
+    ├── meus-pedidos.html         # 📝 Pedidos do cliente
     ├── perfil.html               # 👤 Meus dados (cliente)
     ├── avaliacao.html            # 📊 Avaliação de pedidos e contratos (agente)
-    ├── clientes.html             # 👥 CRUD de clientes (agente)
+    ├── gestao-clientes.html      # 👥 CRUD de clientes (agente)
     ├── /css
     │   └── style.css             # 🎨 Ajustes de estilo além do Bootstrap
     └── /js
@@ -264,10 +265,10 @@ O JSON Server serve automaticamente a pasta `public/`, então a página e a API 
         └── /paginas              # 📄 Lógica de cada página
             ├── login.js
             ├── cadastro.js
-            ├── pedidos.js
+            ├── meus-pedidos.js
             ├── perfil.js
             ├── avaliacao.js
-            └── clientes.js
+            └── gestao-clientes.js
 ```
 
 ---
@@ -298,30 +299,28 @@ Rotas criadas pelo JSON Server a partir do `db.json`:
 | `GET` | `/clientes?email=...`, `/agentes?email=...` | `loginServico.js` |
 | `GET` | `/agentes` | `agentesServico.js` |
 | `GET` / `PATCH` | `/automoveis`, `/automoveis/:id` | `automoveisServico.js` |
-| `GET` / `POST` / `PATCH` | `/pedidos`, `/pedidos?clienteId=...`, `/pedidos/:id` | `pedidosServico.js` |
+| `GET` / `POST` / `PATCH` | `/pedidos`, `/pedidos/:id` | `pedidosServico.js` |
 | `GET` / `POST` | `/contratos` | `contratosServico.js` |
 
-Exemplo buscando os pedidos de um cliente:
+Exemplo buscando um pedido pelo id:
 
 ```bash
-curl http://localhost:3000/pedidos?clienteId=1
+curl http://localhost:3000/pedidos/1
 ```
 
 **Saída esperada:**
 ```json
-[
-  {
-    "id": "1",
-    "clienteId": "1",
-    "automovelId": "2",
-    "dataInicio": "2026-11-10",
-    "dataFim": "2026-11-15",
-    "dataPedido": "2026-11-02",
-    "status": "Em análise",
-    "parecer": "",
-    "agenteId": ""
-  }
-]
+{
+  "id": "1",
+  "clienteId": "1",
+  "automovelId": "2",
+  "dataInicio": "2026-11-10",
+  "dataFim": "2026-11-15",
+  "dataPedido": "2026-11-02",
+  "status": "Em análise",
+  "parecer": "",
+  "agenteId": ""
+}
 ```
 
 ---
