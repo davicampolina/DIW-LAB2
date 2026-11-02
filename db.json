@@ -1,0 +1,31 @@
+{
+  "clientes": [
+    {
+      "id": "1",
+      "nome": "Mariana Souza",
+      "rg": "MG-12.345.678",
+      "cpf": "123.456.789-00",
+      "endereco": "Rua da Bahia, 1200 - Centro, Belo Horizonte",
+      "profissao": "Analista de Sistemas",
+      "email": "mariana@email.com",
+      "senha": "123",
+      "rendimentos": [
+        { "entidadeEmpregadora": "Tech Minas Ltda", "valor": 6500 },
+        { "entidadeEmpregadora": "Freelancer", "valor": 1200 }
+      ]
+    },
+    {
+      "id": "2",
+      "nome": "Carlos Henrique Lima",
+      "rg": "MG-98.765.432",
+      "cpf": "987.654.321-00",
+      "endereco": "Av. Amazonas, 450 - Barro Preto, Belo Horizonte",
+      "profissao": "Professor",
+      "email": "carlos@email.com",
+      "senha": "123",
+      "rendimentos": [
+        { "entidadeEmpregadora": "Escola Estadual Afonso Pena", "valor": 4200 }
+      ]
+    }
+  ]
+}
